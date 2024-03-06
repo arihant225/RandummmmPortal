@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ChatConfirmationComponent } from './components/chat-confirmation/chat-confirmation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChatComponent } from './components/chat/chat.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ChatComponent } from './components/chat/chat.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgOptimizedImage,
   ],
   providers: [],
   bootstrap: [AppComponent]

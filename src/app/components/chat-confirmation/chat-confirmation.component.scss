@@ -1,6 +1,7 @@
 .Guidelines{
     padding: 40px;
     padding-bottom:  100px;
+    
     li{
         margin: 20px;
         font-size: 14px;
@@ -12,5 +13,10 @@
         height: 9cap;
         justify-content: flex-end;
     }
+    label{
+        color: white;
+        font-weight: bold;
+    }
+
    
 }
