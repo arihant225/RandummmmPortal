@@ -1,0 +1,51 @@
+<div class="Guidelines">
+    <h5>
+        Interactive Communication Protocol: Community Guidelines</h5>
+    <ol>
+        <li><strong>Respect and Kindness:</strong> Treat others with respect and kindness at all times. Avoid offensive
+            language, bullying, harassment, or any form of discrimination.</li>
+        <li><strong>Privacy and Confidentiality:</strong> Respect the privacy and confidentiality of others. Do not
+            share personal information or sensitive data without consent.</li>
+        <li><strong>Appropriate Content:</strong> Refrain from sharing or discussing inappropriate content, including
+            but not limited to explicit language, graphic images, or any material that could be considered offensive or
+            inappropriate for the community.</li>
+        <li><strong>Constructive Communication:</strong> Engage in constructive communication and discussions. Refrain
+            from engaging in arguments, trolling, or any behavior that disrupts the conversation or the community's
+            atmosphere.</li>
+        <li><strong>Compliance with Laws and Regulations:</strong> Ensure that all interactions and content shared
+            adhere to relevant laws and regulations. Avoid engaging in any illegal activities or promoting harmful
+            behavior.</li>
+        <li><strong>No Spamming or Solicitation:</strong> Do not spam the chat with excessive messages or solicitations.
+            Respect others' time and avoid promoting products, services, or external links without permission.</li>
+        <li><strong>Mutual Respect for Diversity:</strong> Embrace diversity and cultural differences within the
+            community. Avoid making derogatory remarks or assumptions based on race, ethnicity, gender, religion, sexual
+            orientation, or any other characteristic.</li>
+        <li><strong>Reporting and Moderation:</strong> Report any violations of these guidelines to the moderators or
+            administrators promptly. Trust the moderators to enforce the guidelines fairly and appropriately.</li>
+        <li><strong>Be Mindful of Bandwidth and Resources:</strong> In video calls, be mindful of bandwidth and
+            resources, especially in group calls. Avoid unnecessary background activities that may disrupt the call
+            quality for others.</li>
+        <li><strong>Have Fun Responsibly:</strong> Enjoy your interactions within the community, but do so responsibly.
+            Remember that your actions impact others, so strive to create a positive and inclusive environment for
+            everyone.</li>
+    </ol>
+
+    <p>
+        <label>
+            <input type="checkbox" #aggreeRef />
+            <span> I agree to abide by the following guidelines and adhere to the rules throughout our
+                conversations.</span>
+        </label>
+    </p>
+   
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="Name" type="text" [formControl]="NameController" class="validate" style="color: white; font-size: 15px;">
+                <label for="Name"> Name* </label>
+            </div>
+            <div class="col s6 action-grid">
+                <button #ref class="Std-Buttons" autocomplete="none" (click)="Configure()" [disabled]="NameController.errors||!aggreeRef.checked"> Setup And Proceed </button>
+            </div>
+        </div> 
+  
+</div>

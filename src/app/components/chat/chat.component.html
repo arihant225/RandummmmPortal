@@ -1,0 +1,52 @@
+<div class="grid-divider" *ngIf="OpponentId">
+
+    <div>
+
+    </div>
+    <div class="chat-window">
+        <div class="chat-scroller">
+            <ng-container *ngIf="chatCommunication">
+
+                <div class="chat-container" *ngFor="let comm of chatCommunication">
+                    <div [ngClass]="{
+                'chat-users':comm.connectionId==userId,'chat-others':comm.connectionId!=userId
+            }" class="chat">
+                        <span>{{comm.name}}</span>
+                        <span>{{comm.message}}</span>
+                    </div>
+                </div>
+
+            </ng-container>
+        </div>
+
+        <div class="input-field col s12 textBox">
+            <textarea [formControl]="textController" style="color: white;" rows="1" (keyup)="processText($event)">
+
+           </textarea>
+        </div>
+    </div>
+</div>
+<div class="NewChatRequest" *ngIf="!OpponentId">
+    <div class="intro-container">
+        <div >
+           let's Randummmm
+        </div>
+        <div>
+            <img src="/assets/Img/convoBoo.png">
+        </div>
+        <div>
+        <ng-container *ngIf="!LiveRequest">
+            Ready to shine? One click away from connecting with your perfect chat companion. <br>
+            Hit &nbsp;'Go Live'&nbsp; and let the magic begin!
+        </ng-container>
+        <ng-container *ngIf="LiveRequest">
+            Wait till we are choosing you a Chat companion
+        </ng-container>
+        </div>
+        <div>
+            <button *ngIf="!LiveRequest" class="Std-Buttons" (click)="GoLive()">GO LIVE</button>
+            <img *ngIf="LiveRequest" src="/assets//Img/load_pikachu.gif" class="pikachu">
+        </div>
+        
+    </div>
+</div>

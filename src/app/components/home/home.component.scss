@@ -1,0 +1,62 @@
+$IntroFontStyle:"Satisfy", cursive;
+
+@keyframes popin {
+    0%{
+        display:none;
+    }
+    50%{
+        scale:1.1;
+    }
+    100%{
+    display: grid;
+    }
+}
+.active{
+    
+    display: grid !important;
+    place-items: center;
+    overflow-x: hidden;
+    width: 100%;
+    animation: popin 1s ease-in-out;
+}
+.Intro-Section{
+    transition: ease 0.5s ;
+ display: none;
+    div{
+        display: flex;
+        flex-direction: column;
+        div:nth-child(1){
+            height: 300px;
+        }
+        div{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            padding:auto;
+            font-family: $IntroFontStyle;
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: rgb(222, 239, 150);
+            
+        }
+        
+    }
+    .intro-img{
+        width: 250px;    
+        margin-top: 30px;
+        margin: auto;
+        filter:drop-shadow(5px 2px 10px white)
+    }
+    .Actions{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 40px;
+        button{
+            margin: auto;
+            margin-top:20px;
+        }
+    }
+
+  
+}

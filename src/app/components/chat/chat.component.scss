@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+.grid-divider{
+   
+    display: grid;
+    border: 1px solid white;
+    margin: 10px;
+    height: 95vh;
+    grid-template-columns: 60% 40%;
+    .chat-window{
+        max-height: 95vh;
+        border-left: 1px solid rgb(239, 180, 180);
+        .chat-scroller{
+            max-height: calc(97% - 80px);
+            overflow: auto;
+          
+        }
+    }
+    .textBox{
+        padding: 10px;
+        position: absolute;
+        bottom: -12px;
+        width: 100%;
+        textarea{
+            resize: none;
+            padding: 10px;
+            color:white;
+            overflow: hidden;
+            font-size: 14px;   
+        }
+    }
+    div{
+        
+        position: relative;
+    }
+}
+.chat-container{ 
+    
+    display: grid;
+    margin-top: 20px;
+.chat{
+    padding: 10px 10px;
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    width: fit-content;
+    font-size: 14px;
+    margin-top: 10px;
+    
+    max-width: 80%;
+    span{
+      
+        display: block;
+    }
+    span:nth-child(1){
+        font-weight: 600;
+        font-size: 14px;
+        padding-bottom: 2px;
+    }
+
+}
+
+.chat-users{ 
+  
+    justify-self: right;
+    margin-right: 10px;
+}
+.chat-others{
+
+    margin-left: 10px;
+}
+}
+.NewChatRequest{
+    display: grid;
+    place-items: center;
+    height: 100%;
+    .intro-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        div{
+        display: flex;
+        justify-content: center;
+        font-family: "Satisfy", cursive;
+        font-weight: 400;
+        font-style: normal;
+        }
+        div:nth-child(1){
+            font-size: 3rem;
+        }
+        div:nth-child(3){
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        div:last-child{
+            margin-top: 40px;
+
+        }
+    }
+    .pikachu{
+        height: 100px;
+        
+    }
+    img{
+        height: 300px;
+        filter: drop-shadow(3px 3px 4px white);
+    }
+}
