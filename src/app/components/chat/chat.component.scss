@@ -2,16 +2,74 @@
 .grid-divider{
    
     display: grid;
-    border: 1px solid white;
+    border: 1px solid rgb(120, 102, 102);
     margin: 10px;
     height: 95vh;
     grid-template-columns: 60% 40%;
+    position: relative;
+
+    #action-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position:absolute;
+        bottom: 10px;
+        height:60px;
+        width: 60%;
+        border:none;
+        #microphone{
+    
+          
+            height: 50px;  
+            border-radius: 50px;
+
+
+
+      
+        }
+        #microphone:hover{
+            scale: 1.2;
+            transition: 0.2s ease;
+        }
+        #hangup{
+            
+            height: 50px;  
+            border-radius: 50px;
+       
+            
+        }
+        #hangup:hover{
+            scale: 1.2;
+            transition: 0.2s ease;
+        }
+    }
+    .video-window{
+       
+        display: grid;
+        grid-template-rows: 50% 50%;
+        div{
+            video{
+                padding: 10px;
+                width: 100%;
+                height: 100%;
+                background-color: rgb(42, 42, 42);
+                        }
+            position: relative;
+            border-bottom: 1px solid rgb(51, 20, 20);
+        
+        }
+    }
     .chat-window{
         max-height: 95vh;
-        border-left: 1px solid rgb(239, 180, 180);
+        border-left: 1px solid rgb(70, 21, 21);
         .chat-scroller{
             max-height: calc(97% - 80px);
             overflow: auto;
+            .info{
+                margin: 40px 10px;
+              
+                text-align: center;
+            }
           
         }
     }

@@ -4,6 +4,7 @@ export class TextMessage {
     public connectionId: string;
     public time: string;
     public name: string;
+    public type:string|null=null;
 
     constructor(message: string, connectionId: string, time: string, name: string) {
         this.message = message;

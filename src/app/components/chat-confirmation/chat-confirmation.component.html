@@ -32,20 +32,22 @@
 
     <p>
         <label>
-            <input type="checkbox"  #aggreeRef />
+            <input type="checkbox" #aggreeRef />
             <span> I agree to abide by the following guidelines and adhere to the rules throughout our
                 conversations.</span>
         </label>
     </p>
-   
-        <div class="row">
-            <div class="input-field col s6">
-                <input id="Name" type="text" [formControl]="NameController" class="validate" style="color: white; font-size: 15px;">
-                <label for="Name"> Name* </label>
-            </div>
-            <div class="col s6 action-grid">
-                <button #ref class="Std-Buttons" autocomplete="none" (click)="Configure()" [disabled]="NameController.errors||!aggreeRef.checked"> Setup And Proceed </button>
-            </div>
-        </div> 
-  
+
+    <div class="row">
+        <div class="input-field col s6">
+            <input id="Name" type="text" [formControl]="NameController" class="validate"
+                style="color: white; font-size: 15px;">
+            <label for="Name"> Name* </label>
+        </div>
+        <div class="col s6 action-grid">
+            <button #ref class="Std-Buttons" autocomplete="none" (click)="Configure()"
+                [disabled]="NameController.errors||!aggreeRef.checked"> Setup And Proceed </button>
+        </div>
+    </div>
+
 </div>

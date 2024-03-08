@@ -1,13 +1,26 @@
-<div class="grid-divider" *ngIf="OpponentId">
+<div class="grid-divider" *ngIf="connections.length>0">
 
-    <div>
+    <div class="video-window">
+        <div>
+            <video [srcObject]="stream" autoplay="true" ></video>
+        </div>
+        <ng-container *ngFor="let connection of connections">
+            
+        <div *ngIf="connection.stream"> 
+            <video [srcObject]="connection.stream" autoplay="true" ></video>
+        </div>
+    </ng-container>
 
     </div>
     <div class="chat-window">
         <div class="chat-scroller">
-            <ng-container *ngIf="chatCommunication">
+            <ng-container *ngIf="chatCommunication" >
+                <ng-container *ngFor="let comm of chatCommunication">
+                <div class="info" *ngIf="comm.type=='info'">
+                   " {{comm.name}}  " &nbsp;Joined&nbsp;call
+                </div>
 
-                <div class="chat-container" *ngFor="let comm of chatCommunication">
+                <div class="chat-container" *ngIf="!comm.type" >
                     <div [ngClass]="{
                 'chat-users':comm.connectionId==userId,'chat-others':comm.connectionId!=userId
             }" class="chat">
@@ -17,16 +30,29 @@
                 </div>
 
             </ng-container>
+        </ng-container>
         </div>
 
         <div class="input-field col s12 textBox">
-            <textarea [formControl]="textController" style="color: white;" rows="1" (keyup)="processText($event)">
+            <textarea [formControl]="textController" style="color: white;" rows="1" (keyup)="processText($event)" placeholder="type to text something">
 
            </textarea>
         </div>
     </div>
+    <div id="action-container">
+              
+        <ng-container *ngIf="this.stream">
+        <img id="microphone"  (click)="setMicState(false)" *ngIf="this.micState" src="/assets/Img/mic.png">
+        <img id="microphone"  (click)="setMicState(true)"  *ngIf="!this.micState" src="/assets/Img/mute.png">
+         </ng-container>
+    <img (click)="EndCall()" src="/assets/Img/hangup.png" id="hangup">
+    <ng-container *ngIf="this.stream">
+        <img id="microphone"  (click)="setVCState(true)" *ngIf="!this.VcState"  src="/assets/Img/camera.png">
+        <img id="microphone"  (click)="setVCState(false)"  *ngIf="this.VcState"  src="/assets/Img/camera_off.png">
+         </ng-container>
 </div>
-<div class="NewChatRequest" *ngIf="!OpponentId">
+</div>
+<div class="NewChatRequest" *ngIf="!connections?.length">
     <div class="intro-container">
         <div >
            let's Randummmm
@@ -34,6 +60,7 @@
         <div>
             <img src="/assets/Img/convoBoo.png">
         </div>
+        
         <div>
         <ng-container *ngIf="!LiveRequest">
             Ready to shine? One click away from connecting with your perfect chat companion. <br>
@@ -42,6 +69,11 @@
         <ng-container *ngIf="LiveRequest">
             Wait till we are choosing you a Chat companion
         </ng-container>
+        </div>
+        <div style="margin-top: 70px;">
+            <ng-container *ngIf="endCall">
+                Call Ended
+            </ng-container>
         </div>
         <div>
             <button *ngIf="!LiveRequest" class="Std-Buttons" (click)="GoLive()">GO LIVE</button>

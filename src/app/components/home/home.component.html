@@ -1,14 +1,19 @@
 <div class="side-Nav">
-    <span title="Connect-Around" (click)="scrollTo(0)" [ngClass]="{'active':sectionController.currIndex==0}"><i class=" material-icons" >wifi_tethering</i></span>
-    <span title="More about us" (click)="scrollTo(1)" [ngClass]="{'active':sectionController.currIndex==1}"><i class=" material-icons" >explore</i></span>
-    <span title="About developers" [ngClass]="{'active':sectionController.currIndex==2}"><i class=" material-icons" >code</i></span>
-    <span title="Share" [ngClass]="{'active':sectionController.currIndex==3}"><i class=" material-icons" >share</i></span>
+    <span title="Connect-Around" (click)="scrollTo(0)" [ngClass]="{'active':sectionController.currIndex==0}"><i
+            class=" material-icons">wifi_tethering</i></span>
+    <span title="More about us" (click)="scrollTo(1)" [ngClass]="{'active':sectionController.currIndex==1}"><i
+            class=" material-icons">explore</i></span>
+    <span title="About developers" (click)="scrollTo(2)" [ngClass]="{'active':sectionController.currIndex==2}"><i
+            class=" material-icons">code</i></span>
+    <!-- <span title="Share" [ngClass]="{'active':sectionController.currIndex==3}"><i
+            class=" material-icons">share</i></span> -->
 
 </div>
 <div class="Intro-Section Connect-Now">
     <div>
         <div>
-            <img fetchpriority="high" loading="lazy" width="800" height="800" src="/assets/Img/bunny.png" class="intro-img">
+            <img fetchpriority="high" loading="lazy" width="800" height="800" src="/assets/Img/bunny.png"
+                class="intro-img">
         </div>
         <div>
             hey, Buddyyy getting Bored ?
@@ -16,28 +21,31 @@
             Let's Randummmm
         </div>
         <div class="Actions">
-            <button class="Std-Buttons" routerLink="/chatSetup"> Connect Now  </button>
+            <button class="Std-Buttons" routerLink="/chatSetup"> Connect Now </button>
             <button class="Std-Buttons"> Create/Join Room </button>
-            <button class="Std-Buttons"> Explore More  </button>
-            
-         </div>
+            <button class="Std-Buttons" (click)="scrollTo(1)"> Explore More </button>
+
+        </div>
     </div>
-    
+
 
 </div>
 <div class="Intro-Section Explore">
     <div>
-    <img class="secure-img" src="/assets/Img/secure.png" fetchPriority="high">
-    <span>
-        <p>Secure, Stateless Communication</p>
-        <p>Your privacy is our top priority. Randummmmm operates on a stateless end-to-end connection, ensuring that your data remains yours alone. Once your session ends, it's as if the conversation never took place, providing </p>
-    </span>
+        <img class="secure-img" src="/assets/Img/secure.png" fetchPriority="high">
+        <span>
+            <p>Secure, Stateless Communication</p>
+            <p>Your privacy is our top priority. Randummmmm operates on a stateless end-to-end connection, ensuring that
+                your data remains yours alone. Once your session ends, it's as if the conversation never took place,
+                providing </p>
+        </span>
     </div>
     <div>
         <img class="secure-img" src="/assets/Img/login.png" fetchPriority="high">
         <span>
             <p>Seamless Access</p>
-            <p>Say farewell to cumbersome sign-ups. With Randummmm, accessibility is paramount. Dive straight into conversation without any barriers or obligations, and let your words flow freely</p>
+            <p>Say farewell to cumbersome sign-ups. With Randummmm, accessibility is paramount. Dive straight into
+                conversation without any barriers or obligations, and let your words flow freely</p>
         </span>
     </div>
 
@@ -45,7 +53,9 @@
         <img class="secure-img" src="/assets/Img/chat_video.png" fetchPriority="high">
         <span>
             <p>Concurrent Chat and Video</p>
-            <p>Why choose between text and video when you can have both? Experience the best of both worlds with simultaneous chat and video calls, enriching your interactions and making connections more vibrant than ever before</p>
+            <p>Why choose between text and video when you can have both? Experience the best of both worlds with
+                simultaneous chat and video calls, enriching your interactions and making connections more vibrant than
+                ever before</p>
         </span>
     </div>
 
@@ -53,21 +63,100 @@
         <img class="secure-img" src="/assets/Img/be_yourself.png" fetchPriority="high">
         <span>
             <p>Freedom of Expression</p>
-            <p>Embrace the liberty to express yourself authentically. At Randummmm, there are no constraints on conversation. Navigate discussions on your terms, with the freedom to explore diverse topics and engage as you see fit.</p>
+            <p>Embrace the liberty to express yourself authentically. At Randummmm, there are no constraints on
+                conversation. Navigate discussions on your terms, with the freedom to explore diverse topics and engage
+                as you see fit.</p>
         </span>
     </div>
     <div>
         <img class="secure-img" src="/assets/Img/no_cost.png" fetchPriority="high">
         <span>
             <p>Open Community, Free to Use</p>
-            <p>Join a global community without limitations. [Your Website Name] is an inclusive space, open to all, and completely free to use. Whether you're a seasoned pro or a curious newcomer, there's a place for you here.</p>
+            <p>Join a global community without limitations. [Your Website Name] is an inclusive space, open to all, and
+                completely free to use. Whether you're a seasoned pro or a curious newcomer, there's a place for you
+                here.</p>
         </span>
     </div>
     <div>
         <img class="secure-img" src="/assets/Img/innovation.png" fetchPriority="high">
         <span>
             <p>Personal Endeavor</p>
-            <p>Randummmm is more than a project; it's my personal journey, a dedication to the richness of human connection. It's a labor of love, driven by the desire to create a platform where individuals from all walks of life can come together and share their stories.</p>
+            <p>Randummmm is more than a project; it's my personal journey, a dedication to the richness of human
+                connection. It's a labor of love, driven by the desire to create a platform where individuals from all
+                walks of life can come together and share their stories.</p>
         </span>
     </div>
 </div>
+<div class=" Intro-Section Dev ">
+
+    <div class="place-center">
+        <p>
+            <span>
+                Hi there, I'm
+            </span>
+            <span>
+                Arihant Jain
+            </span>
+            <span>
+                A Full stack Developer
+            </span>
+            <span class="resume">
+                <button (click)="downloadResume()" class="Std-Buttons">Download Resume</button>
+            </span>
+            <img src="/assets/Img/code.png" id="code_png">
+        </p>
+    </div>
+    <div class="place-center">
+        <div>
+            <span class="Actions">
+                <img id="tech_stack" src="/assets/Img/tech_stack.png">
+                <span class="stack">
+                    <p><img src="/assets/Img/csharp.png"></p>
+                    <p><img src="/assets/Img/angular.png"></p>
+                    <p><img src="/assets/Img/devops.png"></p>
+                    <p><img src="/assets/Img/ssms.png"></p>
+                </span>
+                <span id="stack-helper">Hover over me to Explore Dev's skills</span>
+            </span>
+       
+
+
+        <div class="Milestones">
+            <div id="milestones-step-helper">
+                Work Experience & Education
+            </div>
+
+            <div id="milestones-step">
+
+                <p>
+                    <img src="/assets/Img/work.png">
+                </p>
+                <p>
+                    <span>Infosys</span>
+                    <span>System Engineer</span>
+                    <span>Pune, Maharashtra</span>
+                </p>
+            </div>
+
+            <div id="milestones-step">
+
+                <p class="mistone-imgcontainer">
+                    <img src="/assets/Img/college.png">
+                </p>
+                <p>
+                    <span>Madhav Institute of Tech. & Science</span>
+                    <span>B.Tech (Mechanical Engineer)</span>
+                    <span>Gwalior, Madhya Pradesh</span>
+                </p>
+            </div>
+
+
+        </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<!-- <img fetchpriority="high" id="me" src="/assets/Img/me.png"> -->

@@ -3,6 +3,7 @@ import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@micros
 import { Configurations } from '../Configurations/Configurations';
 import { ChatComponent } from '../components/chat/chat.component';
 import { TextMessage } from 'src/interfaces/TextMessage';
+import { StreamOffer } from 'src/interfaces/StreamOffers';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,17 +19,52 @@ export class ChatConnectivityService {
   public setName(name: string) {
     localStorage.setItem("userName", name);
   }
+  
   ConfiguredConnection(chatComponent: ChatComponent) {
 
     let name = localStorage.getItem("userName");
     if (name)
       this.startConnection(name, chatComponent);
   }
+  //#region establish Connection
+  private startConnection(name: string, chatComponent: ChatComponent) {
+    if (this.connection.state != HubConnectionState.Connected) {
+      this.connection.start().then(
+        success => {
+          this.connection.send("GetConnectionId", name)
+        }
+      )
+    }
+    this.connection.on("NewConnectionConfigured", obj => {
+
+      localStorage.setItem("connectionId", obj)
+      chatComponent.userId = localStorage.getItem("connectionId")
+    });
+  
+
+
+    //configured events
+
+
+    this.FoundMatch(chatComponent);
+    this.RecieveMessage(chatComponent);
+    this.callDisconnected(chatComponent);
+    this.GetRemoteStream(chatComponent)
+  }
+
+
 
   public sendMessage(ConnectionId: string, message: string) {
     this.connection.send("SendMessage", ConnectionId, message)
   }
 
+
+  public EndCall(){
+    this.connection.send("EndCall")
+  }
+
+
+  
 
   //#region events
   public GoLive() {
@@ -56,36 +92,36 @@ export class ChatConnectivityService {
 
 
   }
+  private callDisconnected(chatComponent:ChatComponent)
+  {
+    this.connection.on("Disconnected",
+    obj=>{
+     
+      chatComponent.LeftCall(obj);
+    })
+  }
+
   private FoundMatch(chatComponent: ChatComponent) {
     this.connection.on("FoundMatch",
       obj => {
         chatComponent.MatchHandler(obj)
       })
   }
-  //#endregion
-
-  //#region establish Connection
-  private startConnection(name: string, chatComponent: ChatComponent) {
-    if (this.connection.state != HubConnectionState.Connected) {
-      this.connection.start().then(
-        success => {
-          this.connection.send("GetConnectionId", name)
-        }
-      )
-    }
-    this.connection.on("NewConnectionConfigured", obj => {
-
-      localStorage.setItem("connectionId", obj)
-      chatComponent.userId = localStorage.getItem("connectionId")
-    });
-
-
-    //configured events
-
-
-    this.FoundMatch(chatComponent);
-    this.RecieveMessage(chatComponent);
+  private GetRemoteStream(chatComponent:ChatComponent){
+    this.connection.on("AcceptStreamRequest",(offer:StreamOffer)=>{
+     chatComponent.AcceptStreamRequest(offer);
+    })
   }
+
+  public sendStreamingOffer(offer:RTCSessionDescriptionInit,id:string)
+  {
+    this.connection.send("SendStreamRequest",offer.sdp,offer.type,id)
+    
+  }
+
+
   //#endregion
+
+
 }
 
