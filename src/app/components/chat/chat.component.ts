@@ -140,11 +140,28 @@ export class ChatComponent {
 
       this.stream.getVideoTracks().forEach(obj => obj.stop())
     }
-    navigator.mediaDevices.getUserMedia({ audio: this.micState, video: this.VcState }).then(
+    
+      
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(
       (stream) => {
         this.stream = stream;
         this.liveStreamingService.ConfigurePeerConnection(connection, this)
       }
+    ).catch(
+      ()=>{
+  
+      navigator.mediaDevices.getDisplayMedia(
+        {audio:true,
+        video:true}
+      )
+      .then(
+        data=>{
+          this.stream=data;
+          this.liveStreamingService.ConfigurePeerConnection(connection, this)
+        }
+      )
+   
+    }
     )
   }
 
@@ -166,17 +183,59 @@ export class ChatComponent {
       () => {
         let peerConnection = this.connections.filter(op => op.id == offer.id)[0]
         if (peerConnection&&peerConnection.peerConnection) {
-          this.liveStreamingService.AcceptOfferFromOtherPeers(peerConnection.peerConnection, offer.streamOffer);
+          this.liveStreamingService.AcceptOfferFromOtherPeers(peerConnection, offer.streamOffer);
           clearInterval(tempIntervalRef);
           clearTimeout(tempIntervalRef);
         }
 
-      }, 1000
+      }, 100
     )
   }
+
+  RecivedICECandidate(event:string)
+  {
+    console.log(this.connections);
+    let _event:iceCandidateEvent=JSON.parse(event);
+
+   let intervalCache=  setInterval(()=>{
+      let connection=this.connections.filter(obj=>obj.id==_event.id)[0]
+      if(connection)
+      {
+        connection.peerConnection?.addIceCandidate(_event.candidate)
+        
+        clearInterval(intervalCache);
+        clearTimeout(intervalCache);
+      }
+
+    },100)
+    
+  }
+
+  
+  SetAcceptedOffer(event:string)
+  {
+    let _event:any=JSON.parse(event);
+
+    console.log("offer recived");
+   let intervalCache=  setInterval(()=>{
+      let connection=this.connections.filter(obj=>obj.id==_event.id)[0]
+      if(connection)
+      {       
+        clearInterval(intervalCache);
+        clearTimeout(intervalCache);
+      }
+
+    },100)
+    
+  }
+
 
   
 
 
 
+}
+interface iceCandidateEvent{
+  id:string,
+  candidate:RTCIceCandidate
 }

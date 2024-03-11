@@ -2,12 +2,13 @@
 
     <div class="video-window">
         <div>
-            <video [srcObject]="stream" autoplay="true" ></video>
+            <video [srcObject]="stream" autoplay="true"  [volume]="0"></video>
         </div>
         <ng-container *ngFor="let connection of connections">
             
         <div *ngIf="connection.stream"> 
-            <video [srcObject]="connection.stream" autoplay="true" ></video>
+            <video [srcObject]="connection.stream" id="peer-video" autoplay="true" playsInline controls="true" ></video>
+            
         </div>
     </ng-container>
 

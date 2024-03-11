@@ -49,7 +49,9 @@ export class ChatConnectivityService {
     this.FoundMatch(chatComponent);
     this.RecieveMessage(chatComponent);
     this.callDisconnected(chatComponent);
-    this.GetRemoteStream(chatComponent)
+    this.GetRemoteStream(chatComponent);
+    this.RecivedICECandidate(chatComponent);
+    this.callAnswered(chatComponent);
   }
 
 
@@ -58,10 +60,28 @@ export class ChatConnectivityService {
     this.connection.send("SendMessage", ConnectionId, message)
   }
 
+  public sendICECandidate(ev:string,id:string){
+   return this.connection.send("SendICECandidate",ev,id)
+   
+  }
+  public sendStreamingOffer(offer:RTCSessionDescriptionInit,id:string)
+  {
+    this.connection.send("SendStreamRequest",offer.sdp,offer.type,id)
+    
+  }
+
+  public AnswerStreamingCall(description:any,id:string){
+    this.connection.send("AnswerStreamingCall",JSON.stringify(description),id);
+  }
+
+
+
 
   public EndCall(){
     this.connection.send("EndCall")
   }
+
+
 
 
   
@@ -113,11 +133,21 @@ export class ChatConnectivityService {
     })
   }
 
-  public sendStreamingOffer(offer:RTCSessionDescriptionInit,id:string)
+  private RecivedICECandidate(chatComponent:ChatComponent)
   {
-    this.connection.send("SendStreamRequest",offer.sdp,offer.type,id)
-    
+    this.connection.on("RecivedICECandidate",_event=>{
+      chatComponent.RecivedICECandidate(_event);
+
+    })
   }
+
+  private callAnswered(chatComponent:ChatComponent){
+  this.connection.on("CallAccepted",answer=>{
+  chatComponent.SetAcceptedOffer(answer);
+  })  
+  }
+
+
 
 
   //#endregion
